@@ -41,7 +41,7 @@ import yairm210.purity.annotations.Readonly
 class Translations : LinkedHashMap<String, TranslationEntry>() {
 
     var percentCompleteOfLanguages = HashMap<String,Int>()
-            .apply { put(Constants.english, 100) } // So even if we don't manage to load the percentages, we can still pass the language screen
+            .apply { put(Constants.vietnamese, 100) } // Vietnamese is the only supported in-game language.
 
     internal var modsWithTranslations: HashMap<String, Translations> = hashMapOf() // key == mod name
 
@@ -192,6 +192,9 @@ class Translations : LinkedHashMap<String, TranslationEntry>() {
         val startTime = System.currentTimeMillis()
 
         percentCompleteOfLanguages = TranslationFileReader.readLanguagePercentages()
+            .filterKeys { it == Constants.vietnamese }
+            .toMap(HashMap())
+        percentCompleteOfLanguages[Constants.vietnamese] = 100
 
         debug("Loading percent complete of languages - %sms", System.currentTimeMillis() - startTime)
     }

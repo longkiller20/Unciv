@@ -111,6 +111,7 @@ open class UncivGame(val isConsoleMode: Boolean = false) : Game(), PlatformSpeci
          * - Font (hence Fonts.resetFont() inside setSkin())
          */
         settings = files.getGeneralSettings() // needed for the screen
+        settings.language = Constants.vietnamese
         Display.setScreenMode(settings.screenMode, settings)
         setAsRootScreen(GameStartScreen())  // NOT dependent on any atlas or skin
 

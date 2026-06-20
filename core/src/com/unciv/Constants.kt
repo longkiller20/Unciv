@@ -7,6 +7,7 @@ object Constants {
     const val NO_ID = -1
 
     const val english = "English"
+    const val vietnamese = "Vietnamese"
 
     const val impassable = "Impassable"
     const val ocean = "Ocean"

@@ -1,6 +1,6 @@
 package com.unciv.models.metadata
 
-import com.unciv.UncivGame
+import com.unciv.Constants
 import yairm210.purity.annotations.Cache
 import yairm210.purity.annotations.Readonly
 import java.text.NumberFormat
@@ -103,21 +103,20 @@ enum class LocaleCode(
         /** Return the system default language as setting name = file name,
          *  but only if we support a translation, otherwise an empty string
          */
-        fun getSystemLanguage(): String =
-            find(UncivGame.Current.getDefaultLocale())?.takeUnless { it.unused }?.languageName().orEmpty()
+        fun getSystemLanguage(): String = Constants.vietnamese
 
         /** Get a Java Locale for a [language] as stored in GameSettings */
         @Readonly
         fun getLocale(language: String): Locale =
-            find(language)?.locale() ?: Locale.getDefault()
+            find(language)?.locale() ?: Vietnamese.locale()
 
         @Readonly
         fun getSupportedLanguages() =
-            entries.asSequence().filterNot { it.unused }.map { it.languageName() }
+            sequenceOf(Constants.vietnamese)
 
         /** Get the fastlane folder name for a [language] as stored in GameSettings */
         fun fastlaneFolder(language: String) =
-            find(language)?.fastlaneFolder() ?: "en"
+            find(language)?.fastlaneFolder() ?: Vietnamese.fastlaneFolder()
 
         // NumberFormat cache, key: language, value: NumberFormat
         @Cache private val languageToNumberFormat = mutableMapOf<String, NumberFormat>()

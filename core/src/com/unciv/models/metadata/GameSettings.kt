@@ -124,7 +124,7 @@ class GameSettings {
     //endregion
 
     //region 4: Language
-    var language: String = Constants.english
+    var language: String = Constants.vietnamese
     @Transient
     var locale: Locale? = null
     //endregion
